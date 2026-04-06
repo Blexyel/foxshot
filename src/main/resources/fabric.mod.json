@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "foxshot",
+  "version": "${version}",
+  "name": "foxshot",
+  "description": "Uploads your screenshots to foxbox.moe\n\nThat's literally the entire mod",
+  "authors": [
+    "Blexyel"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/foxshot/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "wtf.blexyel.foxshot.client.FoxshotClient"
+    ],
+    "main": [
+      "wtf.blexyel.foxshot.Foxshot"
+    ],
+    "modmenu": [
+      "wtf.blexyel.foxshot.client.ModMenu"
+    ]
+  },
+  "mixins": [
+    "foxshot.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.5",
+    "minecraft": ">=26.1",
+    "yet_another_config_lib_v3": "*"
+  }
+}

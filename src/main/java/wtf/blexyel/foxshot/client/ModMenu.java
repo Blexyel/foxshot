@@ -1,0 +1,12 @@
+package wtf.blexyel.foxshot.client;
+
+import com.terraformersmc.modmenu.api.ConfigScreenFactory;
+import com.terraformersmc.modmenu.api.ModMenuApi;
+import wtf.blexyel.foxshot.config.YACLConfig;
+
+public class ModMenu implements ModMenuApi {
+  @Override
+  public ConfigScreenFactory<?> getModConfigScreenFactory() {
+    return YACLConfig::create;
+  }
+}
