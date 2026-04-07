@@ -12,8 +12,14 @@ public enum ConfigEnums {
 
   USERNAME,
   TOKEN,
-  URL,
+  SERVICE,
+
+  // ### CUSTOM UPLOAD CONFIG ### //
+
+  CUSTOM_URL,
   HTTPS
+
+  // ### CUSTOM UPLOAD CONFIG ### //
 
   // ### END UPLOAD CONFIG ### //
 }

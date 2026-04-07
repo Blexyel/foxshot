@@ -1,4 +1,4 @@
-package wtf.blexyel.foxshot.util;
+package wtf.blexyel.foxshot.network;
 
 import static wtf.blexyel.foxshot.client.FoxshotClient.LOGGER;
 
@@ -9,6 +9,7 @@ import net.minecraft.client.Minecraft;
 import okhttp3.*;
 import wtf.blexyel.foxshot.client.FoxshotClient;
 import wtf.blexyel.foxshot.config.Config;
+import wtf.blexyel.foxshot.misc.FileServices;
 
 public class UploadHandler {
 
@@ -16,7 +17,7 @@ public class UploadHandler {
 
   public static void upload(String ospath) {
     try {
-      String url = Config.url;
+      String url = Config.custom_url;
       String furl = "";
       if (!url.contains("http")) {
         if (Config.https) {
@@ -45,28 +46,27 @@ public class UploadHandler {
         }
       }
 
-      MultipartBody requestBody =
-          new MultipartBody.Builder()
-              .setType(MultipartBody.FORM)
-              .addFormDataPart(
-                  "data",
-                  filename,
-                  RequestBody.create(file, MediaType.parse("application/octet-stream")))
-              .build();
+      Request request = null;
 
-      // Build request
-      Request request =
-          new Request.Builder()
-              .url(furl + path)
-              .header("Authorization", "Bearer " + token)
-              .post(requestBody)
-              .build();
+      if (Config.service == FileServices.FOXBOX) {
+        request = FoxboxHandler.upload(filename, furl, username, token, file);
+      } else if (Config.service == FileServices.CATBOX) {
+        request = CatboxHandler.upload(filename, furl, username, token, file);
+      }
 
       // Execute
+      assert request != null;
       try (Response response = client.newCall(request).execute()) {
+        assert response.body() != null;
         String responseBody = response.body().string();
-        LOGGER.debug("status: {}\nbody: {}", response.code(), responseBody);
+        LOGGER.info("status: {}\nbody: {}", response.code(), responseBody);
 
+        if (Config.service == FileServices.CATBOX) {
+          Minecraft.getInstance().execute(() -> FoxshotClient.toast(responseBody, true));
+          Minecraft.getInstance()
+              .execute(() -> FoxshotClient.sendMessage(responseBody, responseBody));
+          return;
+        }
         JsonObject json = JsonParser.parseString(responseBody).getAsJsonObject();
         String fileId = json.get("file_id").getAsString();
         // String file_url = json.get("file_url").getAsString();

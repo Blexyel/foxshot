@@ -6,6 +6,7 @@ import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.Identifier;
+import wtf.blexyel.foxshot.misc.FileServices;
 
 public class Config {
   public static final ConfigClassHandler<Config> HANDLER =
@@ -28,7 +29,12 @@ public class Config {
   // ### START UPLOAD CONFIG ### //
   @SerialEntry public static String username = "";
   @SerialEntry public static String token = "";
-  @SerialEntry public static String url = "https://foxbox.moe";
+  @SerialEntry public static FileServices service = FileServices.CATBOX;
+
+  // ### CUSTOM UPLOAD CONFIG ### //
+  @SerialEntry public static String custom_url = "foxbox.moe";
   @SerialEntry public static boolean https = true;
+  // ### CUSTOM UPLOAD CONFIG ### //
+
   // ### END UPLOAD CONFIG ### //
 }

@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import wtf.blexyel.foxshot.client.FoxshotClient;
 import wtf.blexyel.foxshot.config.Config;
-import wtf.blexyel.foxshot.util.UploadHandler;
+import wtf.blexyel.foxshot.network.UploadHandler;
 
 @Mixin(Screenshot.class)
 public class ScreenshotMixin {
