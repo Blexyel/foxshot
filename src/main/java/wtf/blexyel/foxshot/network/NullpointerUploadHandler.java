@@ -8,20 +8,21 @@ import okhttp3.RequestBody;
 import wtf.blexyel.foxshot.config.Config;
 import wtf.blexyel.foxshot.misc.FileServices;
 
-public class FoxboxHandler {
+public class NullpointerUploadHandler {
   public static Request upload(
       String filename, String url, String username, String token, File file) {
-    if (Config.service == FileServices.FOXBOX) url = "https://foxbox.moe";
+    if (Config.service == FileServices.NULLPOINTER) url = "https://0x0.st";
 
-    String path = "/upload";
+    String path = "/";
 
     MultipartBody requestBody =
         new MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart(
-                "data",
+                "file",
                 filename,
                 RequestBody.create(file, MediaType.parse("application/octet-stream")))
+            .addFormDataPart("secret", "")
             .build();
 
     // Build request
@@ -30,7 +31,6 @@ public class FoxboxHandler {
         .header(
             "User-Agent",
             "foxshot/" + UploadHandler.modVersion + " (https://github.com/blexyel/foxshot)")
-        .header("Authorization", "Bearer " + token)
         .post(requestBody)
         .build();
   }

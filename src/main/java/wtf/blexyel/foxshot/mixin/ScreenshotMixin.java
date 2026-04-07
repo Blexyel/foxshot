@@ -19,7 +19,8 @@ public class ScreenshotMixin {
     if (Config.enabled) {
       File Screenshot = cir.getReturnValue();
       String ScreenshotName = Screenshot.getName();
-      LOGGER.info("Filename: {} Path: {}", ScreenshotName, Screenshot);
+      LOGGER.info(
+          "Filename: {} Path: {} auto upload: {}", ScreenshotName, Screenshot, Config.auto_upload);
 
       if (Config.auto_upload) {
         Thread.startVirtualThread(() -> UploadHandler.upload(Screenshot.toString()));

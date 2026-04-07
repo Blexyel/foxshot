@@ -13,6 +13,9 @@ import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import wtf.blexyel.foxshot.config.Config;
+import wtf.blexyel.foxshot.network.CustomUploadHandler;
+import wtf.blexyel.foxshot.test.TestUploadHandler;
 
 public class FoxshotClient implements ClientModInitializer {
 
@@ -23,10 +26,14 @@ public class FoxshotClient implements ClientModInitializer {
   @Override
   public void onInitializeClient() {
     LOGGER.info("foxshot client initialized");
+    Config.HANDLER.load();
+    // Register the test CustomUploadHandler request builder thingi.
+    // CustomUploadHandler.register(new TestUploadHandler());
   }
 
   public static void sendUploadMessage(String message, String slug) {
     Minecraft client = Minecraft.getInstance();
+    if (client.player == null) return;
 
     client.player.sendSystemMessage(
         Component.literal(message)
@@ -41,6 +48,7 @@ public class FoxshotClient implements ClientModInitializer {
 
   public static void sendMessage(String message, String url) {
     Minecraft client = Minecraft.getInstance();
+    if (client.player == null) return;
 
     if (!url.isEmpty()) {
       client.player.sendSystemMessage(

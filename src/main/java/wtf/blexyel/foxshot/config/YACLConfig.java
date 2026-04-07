@@ -9,7 +9,6 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import wtf.blexyel.foxshot.misc.FileServices;
@@ -55,37 +54,36 @@ public class YACLConfig {
                         .description(
                             OptionDescription.of(
                                 Component.literal(
-                                    "To be used when not using any of the built-in services\n\nNote: custom service must be API compatible with foxbox")))
+                                    "To be used when not using any of the built-in services\n\nNote: Select service for API compatibility")))
                         .option(
                             YACLConfigHelper.fileServicesOption(
                                 FileServices.CATBOX,
                                 "Service",
                                 "The service to be used",
                                 ConfigEnums.SERVICE))
-                        .optionIf(
-                            (Config.service == FileServices.CUSTOM),
+                        .option(
                             YACLConfigHelper.stringOption(
                                 "https://foxbox.moe",
                                 "URL",
                                 "URL for foxbox",
                                 ConfigEnums.CUSTOM_URL))
-                        .optionIf(
-                            (Config.service == FileServices.CUSTOM),
+                        .option(
                             YACLConfigHelper.booleanOption(
                                 true, "HTTPS", "enable HTTPS", ConfigEnums.HTTPS))
                         .build())
                 // ### CUSTOM UPLOAD CONFIG ### //
                 .build())
         // ### END UPLOAD CONFIG ### //
-        .save(
-            () -> {
-              Config.HANDLER.save();
-              FileServices newService = Config.service;
-              if ((initialService != FileServices.CUSTOM && newService == FileServices.CUSTOM)
-                  || (initialService == FileServices.CUSTOM && newService != FileServices.CUSTOM)) {
-                Minecraft.getInstance().setScreen(create(parent));
-              }
-            })
+        /*
+        () -> {
+          Config.HANDLER.save();
+          FileServices newService = Config.service;
+          if ((initialService != FileServices.CUSTOM && newService == FileServices.CUSTOM)
+              || (initialService == FileServices.CUSTOM && newService != FileServices.CUSTOM)) {
+            Minecraft.getInstance().setScreen(create(parent));
+          }
+        }*/
+        .save(Config.HANDLER::save)
         .build()
         .generateScreen(parent);
   }

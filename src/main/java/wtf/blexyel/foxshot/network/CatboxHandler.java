@@ -29,6 +29,9 @@ public class CatboxHandler {
     // Build request
     return new Request.Builder()
         .url(url + path)
+        .header(
+            "User-Agent",
+            "foxshot/" + UploadHandler.modVersion + " (https://github.com/blexyel/foxshot)")
         .header("Authorization", "Bearer " + token)
         .post(requestBody)
         .build();
