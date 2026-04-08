@@ -57,7 +57,7 @@ public class UploadHandler {
       Request request = null;
 
       switch (Config.service) {
-        case FOXBOX -> request = FoxboxHandler.upload(filename, furl, username, token, file);
+        //case FOXBOX -> request = FoxboxHandler.upload(filename, furl, username, token, file);
         case CATBOX -> request = CatboxHandler.upload(filename, furl, username, token, file);
         case NULLPOINTER -> request = NullpointerUploadHandler.upload(filename, furl, username, token, file);
         case CUSTOM -> {
@@ -73,7 +73,7 @@ public class UploadHandler {
         String responseBody = response.body().string();
         LOGGER.info("status: {}\nbody: {}", response.code(), responseBody);
 
-        if (Config.service != FileServices.FOXBOX) {
+        if (/*Config.service != FileServices.FOXBOX*/true) {
           Minecraft.getInstance().execute(() -> FoxshotClient.toast(responseBody, true));
           Minecraft.getInstance()
               .execute(() -> FoxshotClient.sendMessage(responseBody, responseBody));

@@ -2,7 +2,7 @@ package wtf.blexyel.foxshot.misc;
 
 public enum FileServices {
   CATBOX,
-  FOXBOX,
+  //FOXBOX,
   NULLPOINTER,
   CUSTOM,
 }
