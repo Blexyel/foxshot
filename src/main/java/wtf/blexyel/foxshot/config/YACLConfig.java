@@ -32,6 +32,12 @@ public class YACLConfig {
                         "Auto Upload",
                         "Upload screenshots to foxbox automatically",
                         ConfigEnums.AUTO_UPLOAD))
+                .option(
+                    YACLConfigHelper.booleanOption(
+                        true, "Toast", "Show upload toasts", ConfigEnums.TOAST))
+                .option(
+                    YACLConfigHelper.booleanOption(
+                        true, "Message", "Show upload messages in chat", ConfigEnums.MESSAGE))
                 .build())
         // ### END TOGGLES ### //
         // ### START UPLOAD CONFIG ### //

@@ -5,13 +5,11 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import wtf.blexyel.foxshot.config.Config;
-import wtf.blexyel.foxshot.misc.FileServices;
 
 public class FoxboxHandler {
   public static Request upload(
       String filename, String url, String username, String token, File file) {
-    //if (Config.service == FileServices.FOXBOX) url = "https://foxbox.moe";
+    // if (Config.service == FileServices.FOXBOX) url = "https://foxbox.moe";
 
     String path = "/upload";
 

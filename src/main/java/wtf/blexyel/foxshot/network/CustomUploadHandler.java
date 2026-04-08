@@ -7,8 +7,9 @@ public abstract class CustomUploadHandler {
   private static CustomUploadHandler instance;
 
   /**
-   * Registers a CustomUploadHandler instance to be used for building upload requests.
-   * Reference {@link CustomUploadHandler#buildRequest} for usage.
+   * Registers a CustomUploadHandler instance to be used for building upload requests. Reference
+   * {@link CustomUploadHandler#buildRequest} for usage.
+   *
    * @param handler The CustomUploadHandler instance to register
    * @throws IllegalArgumentException if the handler is null
    */
@@ -26,7 +27,7 @@ public abstract class CustomUploadHandler {
   /**
    * Build a custom upload request
    *
-   * <p>Example/Test implementation at {@link wtf.blexyel.foxshot.test.TestUploadHandler}</p>
+   * <p>Example/Test implementation at {@link wtf.blexyel.foxshot.test.TestUploadHandler}
    *
    * @param filename The name of the file being uploaded
    * @param url The URL (e.g., "https://example.com")
@@ -35,5 +36,6 @@ public abstract class CustomUploadHandler {
    * @param file The file to upload
    * @return A fully built OkHttp Request
    */
-  public abstract Request buildRequest(String filename, String url, String username, String token, File file);
+  public abstract Request buildRequest(
+      String filename, String url, String username, String token, File file);
 }

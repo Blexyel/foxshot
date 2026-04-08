@@ -24,6 +24,8 @@ public class Config {
   // ### START TOGGLES ### //
   @SerialEntry public static boolean enabled = true;
   @SerialEntry public static boolean auto_upload = false;
+  @SerialEntry public static boolean toast = true;
+  @SerialEntry public static boolean message = true;
   // ### END TOGGLES ### //
 
   // ### START UPLOAD CONFIG ### //

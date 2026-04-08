@@ -12,8 +12,8 @@ import wtf.blexyel.foxshot.network.UploadHandler;
 
 public class TestUploadHandler extends CustomUploadHandler {
   @Override
-  public Request buildRequest(String filename, String url, String username, String token,
-      File file) {
+  public Request buildRequest(
+      String filename, String url, String username, String token, File file) {
 
     if (Config.service == FileServices.CATBOX) url = "https://catbox.moe";
 

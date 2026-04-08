@@ -5,6 +5,8 @@ public enum ConfigEnums {
 
   ENABLED,
   AUTO_UPLOAD,
+  TOAST,
+  MESSAGE,
 
   // ### END TOGGLES ### //
 

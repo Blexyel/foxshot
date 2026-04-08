@@ -10,7 +10,6 @@ import net.minecraft.client.Minecraft;
 import okhttp3.*;
 import wtf.blexyel.foxshot.client.FoxshotClient;
 import wtf.blexyel.foxshot.config.Config;
-import wtf.blexyel.foxshot.misc.FileServices;
 
 public class UploadHandler {
   public static final String modVersion =
@@ -57,9 +56,10 @@ public class UploadHandler {
       Request request = null;
 
       switch (Config.service) {
-        //case FOXBOX -> request = FoxboxHandler.upload(filename, furl, username, token, file);
+        // case FOXBOX -> request = FoxboxHandler.upload(filename, furl, username, token, file);
         case CATBOX -> request = CatboxHandler.upload(filename, furl, username, token, file);
-        case NULLPOINTER -> request = NullpointerUploadHandler.upload(filename, furl, username, token, file);
+        case NULLPOINTER ->
+            request = NullpointerUploadHandler.upload(filename, furl, username, token, file);
         case CUSTOM -> {
           CustomUploadHandler handler = CustomUploadHandler.getInstance();
           request = handler.buildRequest(filename, furl, username, token, file);
@@ -71,26 +71,33 @@ public class UploadHandler {
       try (Response response = client.newCall(request).execute()) {
         assert response.body() != null;
         String responseBody = response.body().string();
-        LOGGER.info("status: {}\nbody: {}", response.code(), responseBody);
+        // LOGGER.info("status: {}\nbody: {}", response.code(), responseBody);
 
-        if (/*Config.service != FileServices.FOXBOX*/true) {
-          Minecraft.getInstance().execute(() -> FoxshotClient.toast(responseBody, true));
-          Minecraft.getInstance()
-              .execute(() -> FoxshotClient.sendMessage(responseBody, responseBody));
+        if (
+        /*Config.service != FileServices.FOXBOX*/ 1 + 1 == 2) {
+          if (Config.toast)
+            Minecraft.getInstance().execute(() -> FoxshotClient.toast(responseBody, true));
+          if (Config.message)
+            Minecraft.getInstance()
+                .execute(() -> FoxshotClient.sendMessage(responseBody, responseBody));
         } else {
           JsonObject json = JsonParser.parseString(responseBody).getAsJsonObject();
           String fileId = json.get("file_id").getAsString();
           // String file_url = json.get("file_url").getAsString();
           String file_url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
           // i hate minecraft development
-          Minecraft.getInstance().execute(() -> FoxshotClient.toast(fileId, true));
-          Minecraft.getInstance().execute(() -> FoxshotClient.sendMessage(fileId, file_url));
+          if (Config.toast)
+            Minecraft.getInstance().execute(() -> FoxshotClient.toast(fileId, true));
+          if (Config.message)
+            Minecraft.getInstance().execute(() -> FoxshotClient.sendMessage(fileId, file_url));
         }
       }
 
     } catch (Exception e) {
-      Minecraft.getInstance().execute((() -> FoxshotClient.toast(e.getMessage(), false)));
-      Minecraft.getInstance().execute(() -> FoxshotClient.sendMessage(e.getMessage(), ""));
+      if (Config.toast)
+        Minecraft.getInstance().execute((() -> FoxshotClient.toast(e.getMessage(), false)));
+      if (Config.message)
+        Minecraft.getInstance().execute(() -> FoxshotClient.sendMessage(e.getMessage(), ""));
       e.printStackTrace();
     }
   }

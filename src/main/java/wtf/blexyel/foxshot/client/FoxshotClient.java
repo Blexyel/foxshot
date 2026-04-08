@@ -14,8 +14,6 @@ import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import wtf.blexyel.foxshot.config.Config;
-import wtf.blexyel.foxshot.network.CustomUploadHandler;
-import wtf.blexyel.foxshot.test.TestUploadHandler;
 
 public class FoxshotClient implements ClientModInitializer {
 
@@ -25,7 +23,7 @@ public class FoxshotClient implements ClientModInitializer {
 
   @Override
   public void onInitializeClient() {
-    LOGGER.info("foxshot client initialized");
+    LOGGER.info("foxshot initialized");
     Config.HANDLER.load();
     // Register the test CustomUploadHandler request builder thingi.
     // CustomUploadHandler.register(new TestUploadHandler());

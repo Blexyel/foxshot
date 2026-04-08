@@ -1,7 +1,5 @@
 package wtf.blexyel.foxshot.mixin;
 
-import static wtf.blexyel.foxshot.client.FoxshotClient.LOGGER;
-
 import java.util.Optional;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
@@ -22,8 +20,6 @@ public class ScreenMixin {
       ClickEvent event, Minecraft minecraft, Screen activeScreen, CallbackInfo ci) {
     if (event instanceof Custom(Identifier id, Optional<Tag> payload)) {
       if (id.equals(Identifier.parse("foxshot:upload_event"))) {
-        LOGGER.info("should be correct now, idfk {} {}", id, payload.get());
-
         Thread.startVirtualThread(() -> UploadHandler.upload(payload.get().toString()));
         ci.cancel();
       }
