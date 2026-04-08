@@ -34,7 +34,7 @@ public class Config {
   @SerialEntry public static FileServices service = FileServices.CATBOX;
 
   // ### CUSTOM UPLOAD CONFIG ### //
-  @SerialEntry public static String custom_url = "foxbox.moe";
+  @SerialEntry public static String custom_url = "catbox.moe";
   @SerialEntry public static boolean https = true;
   // ### CUSTOM UPLOAD CONFIG ### //
 

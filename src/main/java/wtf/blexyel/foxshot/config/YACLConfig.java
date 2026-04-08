@@ -69,10 +69,7 @@ public class YACLConfig {
                                 ConfigEnums.SERVICE))
                         .option(
                             YACLConfigHelper.stringOption(
-                                "https://foxbox.moe",
-                                "URL",
-                                "URL for foxbox",
-                                ConfigEnums.CUSTOM_URL))
+                                "catbox.moe", "URL", "URL for foxbox", ConfigEnums.CUSTOM_URL))
                         .option(
                             YACLConfigHelper.booleanOption(
                                 true, "HTTPS", "enable HTTPS", ConfigEnums.HTTPS))

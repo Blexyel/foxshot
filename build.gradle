@@ -60,6 +60,12 @@ dependencies {
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
     implementation "com.squareup.okhttp3:okhttp:4.11.0"
+    implementation "com.squareup.okio:okio:3.6.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.10"
+
+    include "com.squareup.okhttp3:okhttp:4.11.0"
+    include "com.squareup.okio:okio:3.6.0"
+    include "org.jetbrains.kotlin:kotlin-stdlib:1.9.10"
 
     implementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
 

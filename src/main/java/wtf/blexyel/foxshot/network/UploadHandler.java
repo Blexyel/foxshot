@@ -62,12 +62,20 @@ public class UploadHandler {
             request = NullpointerUploadHandler.upload(filename, furl, username, token, file);
         case CUSTOM -> {
           CustomUploadHandler handler = CustomUploadHandler.getInstance();
+          if (handler == null) {
+            Minecraft.getInstance()
+                .execute(() -> FoxshotClient.toast("No CustomUploadHandler registered", false));
+            return;
+          }
           request = handler.buildRequest(filename, furl, username, token, file);
         }
       }
 
       // Execute
-      assert request != null;
+      if (request == null) {
+        LOGGER.error("Failed to build upload request");
+        return;
+      }
       try (Response response = client.newCall(request).execute()) {
         assert response.body() != null;
         String responseBody = response.body().string();
