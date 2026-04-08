@@ -25,7 +25,7 @@ public class ScreenshotMixin {
       if (Config.auto_upload) {
         Thread.startVirtualThread(() -> UploadHandler.upload(Screenshot.toString()));
       } else {
-        FoxshotClient.sendUploadMessage(ScreenshotName, Screenshot.toString());
+        FoxshotClient.sendUploadMessage("[Upload] " + ScreenshotName, Screenshot.toString());
       }
       // Thread.startVirtualThread(() -> UploadHandler.upload(Screenshot.toString(),
       // ScreenshotName));
