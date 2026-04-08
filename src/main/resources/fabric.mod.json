@@ -7,7 +7,9 @@
   "authors": [
     "Blexyel"
   ],
-  "contact": {},
+  "contact": {
+    "homepage": "https://github.com/Blexyel/foxshot"
+  },
   "license": "MIT",
   "icon": "assets/foxshot/icon.png",
   "environment": "client",
