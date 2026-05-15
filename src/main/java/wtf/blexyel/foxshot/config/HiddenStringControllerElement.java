@@ -10,8 +10,7 @@ import net.minecraft.network.chat.Component;
 
 // code copied and slightly modified from StringControllerElement to hide the text and show
 // asterisks instead
-public class HiddenStringControllerElement extends StringControllerElement
-    implements HiddenStringControllerElementInterface {
+public class HiddenStringControllerElement extends StringControllerElement {
   public HiddenStringControllerElement(
       IStringController<String> controller,
       YACLScreen parent,
@@ -21,7 +20,7 @@ public class HiddenStringControllerElement extends StringControllerElement
   }
 
   @Override
-  public void extractValueText(GuiGraphics graphics, int mouseX, int mouseY, float a) {
+  public void drawValueText(GuiGraphics graphics, int mouseX, int mouseY, float a) {
     String renderedValue = "*".repeat(getValueText().getString().length());
     Component valueText = Component.literal(renderedValue);
     if (!isHovered())
@@ -37,7 +36,7 @@ public class HiddenStringControllerElement extends StringControllerElement
         inputFieldBounds.y() - 2,
         inputFieldBounds.xLimit() + 1,
         inputFieldBounds.yLimit() + 4);
-    // graphics.text(textRenderer, renderedValue, textX, getTextY(), getValueColor(), true);
+    graphics.drawString(textRenderer, renderedValue, textX, getTextY(), getValueColor(), true);
 
     if (isHovered()) {
       ticks += a;
