@@ -33,7 +33,7 @@ public class FoxshotClient implements ClientModInitializer {
     Minecraft client = Minecraft.getInstance();
     if (client.player == null) return;
 
-    client.player.sendSystemMessage(
+    client.player.displayClientMessage(
         Component.literal(message)
             .setStyle(
                 Style.EMPTY
@@ -41,7 +41,8 @@ public class FoxshotClient implements ClientModInitializer {
                         new ClickEvent.Custom(
                             Identifier.parse("foxshot:upload_event"),
                             Optional.of(StringTag.valueOf(slug))))
-                    .withColor(TextColor.fromRgb(0xB4BEFE))));
+                    .withColor(TextColor.fromRgb(0xB4BEFE))),
+        false);
   }
 
   public static void sendMessage(String message, String url) {
@@ -49,12 +50,13 @@ public class FoxshotClient implements ClientModInitializer {
     if (client.player == null) return;
 
     if (!url.isEmpty()) {
-      client.player.sendSystemMessage(
+      client.player.displayClientMessage(
           Component.literal(message)
               .setStyle(Style.EMPTY.withClickEvent(new ClickEvent.OpenUrl(URI.create(url))))
-              .withColor(0xA6E3A1));
+              .withColor(0xA6E3A1),
+          false);
     } else {
-      client.player.sendSystemMessage(Component.literal(message).withColor(0xF9E2AF));
+      client.player.displayClientMessage(Component.literal(message).withColor(0xF9E2AF), false);
     }
   }
 
