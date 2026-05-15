@@ -85,20 +85,25 @@ public class HiddenStringControllerElement extends StringControllerElement {
     }
     graphics.disableScissor();
 
-    if (this.isHoveredInputField(mouseX, mouseY)) {
-      graphics.requestCursor(
-          isAvailable()
-              ? com.mojang.blaze3d.platform.cursor.CursorTypes.IBEAM
-              : com.mojang.blaze3d.platform.cursor.CursorTypes.NOT_ALLOWED);
-    } else if (this.hovered) {
-      graphics.requestCursor(
-          isAvailable()
-              ? com.mojang.blaze3d.platform.cursor.CursorTypes.POINTING_HAND
-              : com.mojang.blaze3d.platform.cursor.CursorTypes.NOT_ALLOWED);
-    }
+    /*
+      if (this.isHoveredInputField(mouseX, mouseY)) {
+        graphics.requestCursor(
+            isAvailable()
+                ? com.mojang.blaze3d.platform.cursor.CursorTypes.IBEAM
+                : com.mojang.blaze3d.platform.cursor.CursorTypes.NOT_ALLOWED);
+      } else if (this.hovered) {
+        graphics.requestCursor(
+            isAvailable()
+                ? com.mojang.blaze3d.platform.cursor.CursorTypes.POINTING_HAND
+                : com.mojang.blaze3d.platform.cursor.CursorTypes.NOT_ALLOWED);
+      }
+    */
   }
 
+  /*
   private boolean isHoveredInputField(double mouseX, double mouseY) {
     return inputFieldBounds.isPointInside((int) mouseX, (int) mouseY);
   }
+  */
+
 }

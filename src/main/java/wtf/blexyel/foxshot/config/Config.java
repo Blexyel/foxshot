@@ -5,13 +5,13 @@ import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import wtf.blexyel.foxshot.misc.FileServices;
 
 public class Config {
   public static final ConfigClassHandler<Config> HANDLER =
       ConfigClassHandler.createBuilder(Config.class)
-          .id(Identifier.tryParse("foxshot:config"))
+          .id(ResourceLocation.tryParse("foxshot:config"))
           .serializer(
               config ->
                   GsonConfigSerializerBuilder.create(config)

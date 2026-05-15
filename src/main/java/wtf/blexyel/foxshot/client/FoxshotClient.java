@@ -10,7 +10,7 @@ import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import wtf.blexyel.foxshot.config.Config;
@@ -39,7 +39,7 @@ public class FoxshotClient implements ClientModInitializer {
                 Style.EMPTY
                     .withClickEvent(
                         new ClickEvent.Custom(
-                            Identifier.parse("foxshot:upload_event"),
+                            ResourceLocation.parse("foxshot:upload_event"),
                             Optional.of(StringTag.valueOf(slug))))
                     .withColor(TextColor.fromRgb(0xB4BEFE))),
         false);
