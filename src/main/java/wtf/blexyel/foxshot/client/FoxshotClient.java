@@ -1,16 +1,13 @@
 package wtf.blexyel.foxshot.client;
 
 import java.net.URI;
-import java.util.Optional;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.toasts.SystemToast;
-import net.minecraft.nbt.StringTag;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
-import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import wtf.blexyel.foxshot.config.Config;
@@ -37,12 +34,14 @@ public class FoxshotClient implements ClientModInitializer {
         Component.literal(message)
             .setStyle(
                 Style.EMPTY
-                    .withClickEvent(
-                        new ClickEvent.Custom(
-                            ResourceLocation.parse("foxshot:upload_event"),
-                            Optional.of(StringTag.valueOf(slug))))
+                    .withClickEvent(new ClickEvent.RunCommand("foxshot:upload_event;" + slug))
                     .withColor(TextColor.fromRgb(0xB4BEFE))),
         false);
+
+    /*
+               false,
+               Optional.of(StringTag.valueOf(slug))))
+    */
   }
 
   public static void sendMessage(String message, String url) {
