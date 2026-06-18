@@ -7,6 +7,8 @@ import com.google.gson.JsonParser;
 import java.io.File;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextColor;
 import okhttp3.*;
 import wtf.blexyel.foxshot.client.FoxshotClient;
 import wtf.blexyel.foxshot.config.Config;
@@ -42,6 +44,10 @@ public class UploadHandler {
       ospath = ospath.replaceAll("^\"|\"$", "");
       File file = new File(ospath);
       String filename = file.getName();
+
+      if (Config.message)
+        Minecraft.getInstance().execute(() -> { Minecraft.getInstance().player.sendSystemMessage(
+          Component.literal("Uploading " + filename).withColor(TextColor.fromRgb(0xB4BEFE))); });
 
       while (!file.exists() || file.length() == 0) {
         try {

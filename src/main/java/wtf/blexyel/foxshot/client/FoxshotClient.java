@@ -63,19 +63,17 @@ public class FoxshotClient implements ClientModInitializer {
 
     if (success) {
       client
-          .getToastManager()
-          .addToast(
-              SystemToast.multiline(
-                  client,
+          .gui
+          .toastManager()
+          .addToast(new SystemToast(
                   CustomSystemToastId.UPLOAD_SUCCESS,
                   Component.literal("Screenshot uploaded"),
                   Component.literal(message)));
     } else {
       client
-          .getToastManager()
-          .addToast(
-              SystemToast.multiline(
-                  client,
+          .gui
+          .toastManager()
+          .addToast(new SystemToast(
                   CustomSystemToastId.UPLOAD_FAILURE,
                   Component.literal("Screenshot upload failed!"),
                   Component.literal(message)));
