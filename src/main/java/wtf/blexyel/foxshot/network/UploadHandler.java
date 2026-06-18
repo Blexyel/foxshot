@@ -46,8 +46,15 @@ public class UploadHandler {
       String filename = file.getName();
 
       if (Config.message)
-        Minecraft.getInstance().execute(() -> { Minecraft.getInstance().player.sendSystemMessage(
-          Component.literal("Uploading " + filename).withColor(TextColor.fromRgb(0xB4BEFE))); });
+        Minecraft.getInstance()
+            .execute(
+                () -> {
+                  Minecraft.getInstance()
+                      .player
+                      .sendSystemMessage(
+                          Component.literal("Uploading " + filename)
+                              .withColor(TextColor.fromRgb(0xB4BEFE)));
+                });
 
       while (!file.exists() || file.length() == 0) {
         try {
